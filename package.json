@@ -1,0 +1,13 @@
+{
+  "name": "hubtec",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "^4.0.7",
+    "postcss-import": "^12.0.1",
+    "tailwindcss": "^1.0.4"
+  },
+  "devDependencies": {
+    "postcss-preset-env": "^6.6.0",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
