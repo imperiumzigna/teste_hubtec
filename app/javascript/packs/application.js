@@ -15,7 +15,7 @@
 // const imagePath = (name) => images(name, true)
 import "../css/application.scss";
 import 'bootstrap';
-
+import 'tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4';
 
 document.addEventListener('turbolinks:load', () => {
   $('[data-toggle="tooltip"').tooltip();

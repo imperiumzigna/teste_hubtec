@@ -28,7 +28,7 @@
 
   <div class="form-group">
     <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-      <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+      <input type="text" name="task[finish_at]" value="<%= task.finish_at %>" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
       <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
       </div>
@@ -42,6 +42,8 @@
 </div>
 <script type="text/javascript">
   $(function () {
-    $('#datetimepicker1').datetimepicker();
+    $('#datetimepicker1').datetimepicker({
+      format: "YYYY-MM-DD hh:mm:ss"
+    });
   });
 </script>
