@@ -1,13 +1,13 @@
 <div class="w-1/3">
   <h2 class="font-bold mb-6 text-center">Login</h2>
-  <div class="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
+  <div class="border-green-500 p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="mb-4">
       <%= f.label :email, class:"font-bold text-grey-darker block mb-2" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" %>
     </div>
     <div class="mb-4">
-      <%= f.label :password, class:"font-bold text-grey-darker block mb-2" %>
+      <%= f.label 'Senha', class:"font-bold text-grey-darker block mb-2" %>
       <%= f.password_field :password, autocomplete: "current-password", class: "block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" %>
     </div>
     <div class="">

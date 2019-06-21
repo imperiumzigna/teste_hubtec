@@ -1,0 +1,25 @@
+<div class="border-green-500 p-8 border-t-12 bg-white mb-12 rounded-lg shadow-lg">
+  
+<table>
+  <thead>
+    <tr>
+      <th>Tarefa</th>
+      <th>Prioridade</th>
+      <th>Termina às:</th>
+      <th colspan="3">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.body %></td>
+        <td><%= task.priority %></td>
+        <td><%= task.finish_at %></td>
+        <td><%= link_to 'Show', task, class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" %></td>
+        <td><%= link_to 'Edit', edit_task_path(task), class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

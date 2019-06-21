@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :tasks
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     unlocks: 'users/unlocks',
     passwords: 'users/passwords',
-    confirmations: 'users/confirmations'
+    confirmations: 'users/confirmations',
   }, path: '/', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
   # defaults to dashboard
   root to: redirect('/login')

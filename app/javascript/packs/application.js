@@ -6,7 +6,8 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
-
+require('@rails/ujs').start()
+require('turbolinks').start()
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -14,4 +15,12 @@
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-import "../css/application.css";
+import "../css/application.scss";
+
+import 'bootstrap'
+
+document.addEventListener('turbolinks:load', () => {
+  $('[data-toggle="tooltip"').tooltip();
+  $('[data-toggle="popover"').popover();
+
+})
