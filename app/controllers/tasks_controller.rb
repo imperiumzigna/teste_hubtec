@@ -7,7 +7,9 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(user_id: current_user.id).order(created_at: 'DESC').paginate(page: params[:page], per_page: 10)
+    @tasks = Task.where(user_id: current_user.id, visible: true)
+      .order(created_at: 'DESC')
+      .paginate(page: params[:page], per_page: 10)
   end
 
   # GET /tasks/1
@@ -61,7 +63,8 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     authorize!(:destroy, @task)
-    @task.destroy
+    @task.visible = false
+    @task.save
     respond_to do |format|
       format.html { redirect_to tasks_url }
       format.json { head :no_content }
