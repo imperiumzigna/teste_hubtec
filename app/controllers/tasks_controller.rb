@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @tasks = Task.where(user_id: current_user.id).order(created_at: 'DESC').paginate(page: params[:page], per_page: 10)
   end
 
   # GET /tasks/1
@@ -30,7 +31,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.html { redirect_to @task }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -44,7 +45,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to @task }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
@@ -58,8 +59,20 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to tasks_url }
       format.json { head :no_content }
+    end
+  end
+
+  def change_status
+    task = Task.find(params[:task_id])
+    task.status = params[:status]
+    respond_to do |format|
+      if task.save
+        format.json { render json: { message: 'Status da tarefa alterado!', status: 'success' } }
+      else
+        format.json { render json: { message: 'Falha ao alterar status da tarefa', status: 'error' } }
+      end
     end
   end
 
@@ -72,6 +85,6 @@ class TasksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def task_params
-    params.require(:task).permit(:body, :priority, :finish_at, :user_id)
+    params.require(:task).permit(:status, :body, :priority, :finish_at, :user_id)
   end
 end

@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id         :bigint           not null, primary key
+#  status     :boolean          default("desativada")
+#  body       :text             default("")
+#  priority   :integer          default("baixa")
+#  finish_at  :datetime
+#  user_id    :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+
 require 'rails_helper'
 
 describe Task do

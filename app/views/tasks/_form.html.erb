@@ -1,3 +1,4 @@
+<div class="card-body">
 <%= form_with(model: task, local: true) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
@@ -11,27 +12,36 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+  <div class="form-group">
+    <%= form.label 'Descrição da tarefa', class: 'form-label' %>
+    <%= form.text_area :body, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :priority %>
-    <%= form.text_field :priority %>
+  <div class="form-group">
+    <%= form.label 'Prioridade', class: 'form-label' %>
+    <select name="task[priority]" class="form-control">
+    <option value="baixa">Baixa</option>
+    <option value="normal">Normal</option>
+    <option value="alta">Alta</option>
+    </select>
   </div>
 
-  <div class="field">
-    <%= form.label :finish_at %>
-    <%= form.datetime_select :finish_at %>
+  <div class="form-group">
+    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+      <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+      <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <input name="task[user_id]" value="<%= current_user.id %>" hidden>
+  <div class="form-group">
+    <%= form.submit 'Salvar', class: 'btn btn-success float-right' %>
   </div>
 <% end %>
+</div>
+<script type="text/javascript">
+  $(function () {
+    $('#datetimepicker1').datetimepicker();
+  });
+</script>

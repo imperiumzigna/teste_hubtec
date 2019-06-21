@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <%= link_to 'Task Rails', root_path, class: 'navbar-brand' %>
+  <ul class="nav justify-content-end">
+  <% if user_signed_in? %> 
+      <li class="nav-item">
+      <%= link_to 'Tarefas', tasks_path, class: 'nav-link' %>
+      </li> 
+      <li class="nav-item">
+       <%= link_to 'Logout', destroy_user_session_path, class: 'nav-link', method: :delete %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to 'Registrar', new_user_registration_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+           <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+        </li>
+      <% end %>
+    </ul>
+</nav>

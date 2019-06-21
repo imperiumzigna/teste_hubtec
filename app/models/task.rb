@@ -1,10 +1,24 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id         :bigint           not null, primary key
+#  status     :boolean          default("desativada")
+#  body       :text             default("")
+#  priority   :integer          default("baixa")
+#  finish_at  :datetime
+#  user_id    :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+
 class Task < ApplicationRecord
   belongs_to :user
-
-  enum priority: [:low, :normal, :high]
+  enum status: { desativada: false, ativa: true }
+  enum priority: { baixa: 0, normal: 1, alta: 2 }
 
   validates :body, presence: true
-  validates :priority, numericality: { only_integer: true }
 end

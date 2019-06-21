@@ -6,8 +6,6 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
-require('@rails/ujs').start()
-require('turbolinks').start()
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
@@ -16,11 +14,22 @@ require('turbolinks').start()
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import "../css/application.scss";
+import 'bootstrap';
 
-import 'bootstrap'
 
 document.addEventListener('turbolinks:load', () => {
   $('[data-toggle="tooltip"').tooltip();
   $('[data-toggle="popover"').popover();
-
 })
+
+$(document).ready(function () {
+  $(".finish_task").click((evt) => {
+    const id = evt.target.value;
+    const checked = $(`#task_${id}`).is(':checked');
+    const status = checked ? 'ativa' : 'desativada';
+    $.getJSON(`/tasks/${id}/change?status=${status}`, (data) => {
+      Swal.fire(data.message, "", data.status);
+      console.log(data.message);
+    });
+  });
+});

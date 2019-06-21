@@ -9,7 +9,7 @@ feature 'User signs up' do
     fill_in 'Email', with: 'username@example.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
-    click_button 'Sign up'
+    click_button 'Register'
 
     expect(page).to(have_text('Welcome! You have signed up successfully.'))
     expect(page).to(have_link('Sign Out'))
@@ -19,7 +19,7 @@ feature 'User signs up' do
   scenario 'with invalid data' do
     visit new_user_registration_path
 
-    click_button 'Sign up'
+    click_button 'Register'
 
     expect(page).to(have_text("Email can't be blank"))
     expect(page).to(have_text("Password can't be blank"))
