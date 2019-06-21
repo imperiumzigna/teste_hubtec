@@ -14,15 +14,13 @@
 #  updated_at :datetime         not null
 #  visible    :boolean          default(TRUE)
 #
-
-
 require 'rails_helper'
 
 describe Task do
   describe 'validations' do
     subject { task }
 
-    let(:task) { FactoryBot.build(:task) }
+    let(:task) { build(:task) }
 
     it { expect { task.body = nil }.to(change { task.valid? }.from(true).to(false)) }
     it { expect { task.priority = nil }.to(change { task.valid? }.from(true).to(false)) }

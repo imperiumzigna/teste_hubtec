@@ -4,17 +4,18 @@ require 'rails_helper'
 
 RSpec.describe("tasks/show", type: :view) do
   before(:each) do
+    @user = create(:user)
+    sign_in @user
     @task = assign(:task, Task.create!(
       body: "MyText",
-      priority: "Priority",
-      user: nil
+      priority: "normal",
+      user_id: @user.id
     ))
   end
 
-  it "renders attributes in <p>" do
+  it "renders attributes in div" do
     render
     expect(rendered).to(match(/MyText/))
-    expect(rendered).to(match(/Priority/))
-    expect(rendered).to(match(//))
+    expect(rendered).to(match(/normal/))
   end
 end
