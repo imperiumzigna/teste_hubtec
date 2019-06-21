@@ -22,4 +22,5 @@ class Task < ApplicationRecord
   enum priority: { baixa: 0, normal: 1, alta: 2 }
 
   validates :body, presence: true
+  validates :priority, presence: true
 end

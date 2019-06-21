@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 require 'capybara/rspec'
+require 'simplecov'
+require 'simplecov-shield'
+SimpleCov.formatter = SimpleCov::Formatter::ShieldFormatter
+SimpleCov.start
 require 'webdrivers'
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

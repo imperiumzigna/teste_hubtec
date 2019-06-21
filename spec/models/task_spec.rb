@@ -18,11 +18,11 @@ require 'rails_helper'
 
 describe Task do
   describe 'validations' do
-    subject { task }
+    before(:each) do
+      @task = build(:task)
+    end
 
-    let(:task) { build(:task) }
-
-    it { expect { task.body = nil }.to(change { task.valid? }.from(true).to(false)) }
-    it { expect { task.priority = nil }.to(change { task.valid? }.from(true).to(false)) }
+    it { expect { @task.body = nil }.to(change { @task.valid? }.from(true).to(false)) }
+    it { expect { @task.priority = nil }.to(change { @task.valid? }.from(true).to(false)) }
   end
 end

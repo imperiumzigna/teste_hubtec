@@ -55,6 +55,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 4.0'
   gem 'database_cleaner'
+  gem 'simplecov-shield'
 end
 
 group :development do

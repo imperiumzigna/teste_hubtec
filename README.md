@@ -1,5 +1,9 @@
 # README
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/844213b238d3f33aa348/maintainability)](https://codeclimate.com/github/imperiumzigna/teste_hubtec/maintainability)
+
+![Test Coverage](coverage/coverage.svg)
+
 Aplicação para o teste de Desenvolvedor Ruby na empresa HubTec 2019.
 
 ## Descrição do teste
